@@ -1,19 +1,21 @@
 'use strict';
-console.log('hello world');
+//console.log('hello world');
 // Global Variables
 
 let totalClicks = 0;
-let clicksAllowed = 3;
+let clicksAllowed = 5;
 let allProducts = [];
 let indexArray = [];
-let myContainer = document.querySelector('section');
-let myButton = document.querySelector('div');
+let myContainer = document.getElementById('img-box');
+let myButton = document.getElementById('results-button');
 
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 
-function Bus(name, fileExtension = 'jpg') {
+// Constructor Function //
+
+function Product(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
@@ -21,29 +23,28 @@ function Bus(name, fileExtension = 'jpg') {
   allProducts.push(this);
 }
 
+new Product('usb', 'gif');
+new Product('bag');
+new Product('banana');
+new Product('bathroom');
+new Product('boots');
+new Product('breakfast');
+new Product('bubblegum');
+new Product('chair');
+new Product('cthulhu');
+new Product('dog-duck');
+new Product('dragon');
+new Product('pen');
+new Product('pet-sweep');
+new Product('scissors');
+new Product('shark');
+new Product('tauntaun');
+new Product('unicorn');
+new Product('water-can');
+new Product('wine-glass');
+new Product('sweep', 'png');
 
-new Bus('usb', 'gif');
-new Bus('bag');
-new Bus('banana');
-new Bus('bathroom');
-new Bus('boots');
-new Bus('breakfast');
-new Bus('bubblegum');
-new Bus('chair');
-new Bus('cthulhu');
-new Bus('dog-duck');
-new Bus('dragon');
-new Bus('pen');
-new Bus('pet-sweep');
-new Bus('scissors');
-new Bus('shark');
-new Bus('tauntaun');
-new Bus('unicorn');
-new Bus('water-can');
-new Bus('wine-glass');
-new Bus('sweep', 'png');
-
-
+// Random number generator
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
@@ -57,18 +58,11 @@ function populateIndexArray() {
   }
 }
 
-// console.log(indexArray);
-
-function renderBus() {
-
+function renderProducts() {
   populateIndexArray();
   let firstBusIndex = indexArray.pop();
   let secondBusIndex = indexArray.pop();
   let thirdBusIndex = indexArray.pop();
-
-  // while (firstBusIndex === secondBusIndex) {
-  // secondBusIndex = getRandomIndex();
-  // }
 
   imageOne.src = allProducts[firstBusIndex].src;
   imageOne.title = allProducts[firstBusIndex].name;
@@ -88,15 +82,16 @@ function renderResults() {
   let myList = document.querySelector('ul');
   for (let i = 0; i < allProducts.length; i++) {
     let li = document.createElement('li');
-    li.textContent = `${allProducts[i].name} had ${allProducts[i].views} votes, and was seen ${allProducts[i].clicks} times`;
+    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times`;
     myList.appendChild(li);
   }
 }
 
 function handleClick(event) {
   if (event.target === myContainer) {
+
     alert('Please click an image and FOLLOW INSTRUCTIONS');
-    renderResults();
+    // renderResults();
   }
 
   totalClicks++;
@@ -108,53 +103,21 @@ function handleClick(event) {
     }
   }
 
-  renderBus();
+  renderProducts();
   if (totalClicks === clicksAllowed) {
-    // REMOVE EVENT LISTENER
+    // Remove Event Listener
     myContainer.removeEventListener('click', handleClick);
   }
-
 }
 
 function handleButtonClick(event) { //eslint-disable-line
-
   if (totalClicks === clicksAllowed) {
     renderResults();
+    totalClicks = 0;
   }
 }
 
-renderBus();
-myContainer.addEventListener('click', handleClick);
+renderProducts();
 myButton.addEventListener('click', handleButtonClick);
+myContainer.addEventListener('click', handleClick);
 
-
-// from repl this morning
-// 
-// console.log('hello 201n21');
-// 
-// const months = ['Dec', 'Feb', 'June', 'July'];
-// 
-// let myMonth = months[0];
-// console.log(myMonth);
-// console.log(months);
-// 
-// let donsMonth = months.shift();
-// console.log(donsMonth);
-// console.log(months);
-// 
-// let anotherMonth = months.pop();
-// console.log(anotherMonth);
-// console.log(months);
-// 
-// months.unshift('January');
-// console.log(months);
-// 
-// months.push('July');
-// console.log(months);
-// 
-// months.splice(1, 0, 'March', 'April');
-// console.log(months);
-// 
-// let removedMonths= months.splice(1, 3);
-// console.log(months);
-// console.log(removedMonths);
