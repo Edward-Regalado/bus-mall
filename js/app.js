@@ -3,7 +3,7 @@
 // Global Variables
 
 let totalClicks = 0;
-let clicksAllowed = 5;
+let clicksAllowed = 25;
 let allProducts = [];
 let indexArray = [];
 let myContainer = document.getElementById('img-box');
