@@ -49,13 +49,13 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
-  for (let i = 0; i < uniqueImageCount; i++) {
+  while(indexArray.length < uniqueImageCount){
     let randomIndex = getRandomIndex();
     while (!indexArray.includes(randomIndex)) {
-      indexArray.push(randomIndex);
+      indexArray.unshift(randomIndex);
     }
   }
-
+  // console.log(indexArray);
   let firstProductIndex = indexArray.pop();
   let secondProductIndex = indexArray.pop();
   let thirdProductIndex = indexArray.pop();
