@@ -6,11 +6,11 @@ let totalClicks = 0;
 let clicksAllowed = 25;
 let allProducts = [];
 let indexArray = [];
-let myContainer = document.getElementById('img-box');
-
+let uniqueImageCount = 6;
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
+let myContainer = document.getElementById('img-box');
 
 // Constructor Function //
 
@@ -48,32 +48,29 @@ function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-function populateIndexArray() {
-  while (indexArray.length < 3) {
+function renderProducts() {
+  for (let i = 0; i < uniqueImageCount; i++) {
     let randomIndex = getRandomIndex();
     while (!indexArray.includes(randomIndex)) {
       indexArray.push(randomIndex);
     }
   }
-}
 
-function renderProducts() {
-  populateIndexArray();
-  let firstBusIndex = indexArray.pop();
-  let secondBusIndex = indexArray.pop();
-  let thirdBusIndex = indexArray.pop();
+  let firstProductIndex = indexArray.pop();
+  let secondProductIndex = indexArray.pop();
+  let thirdProductIndex = indexArray.pop();
 
-  imageOne.src = allProducts[firstBusIndex].src;
-  imageOne.title = allProducts[firstBusIndex].name;
-  allProducts[firstBusIndex].views++;
+  imageOne.src = allProducts[firstProductIndex].src;
+  imageOne.title = allProducts[firstProductIndex].name;
+  allProducts[firstProductIndex].views++;
 
-  imageTwo.src = allProducts[secondBusIndex].src;
-  imageTwo.title = allProducts[secondBusIndex].name;
-  allProducts[secondBusIndex].views++;
+  imageTwo.src = allProducts[secondProductIndex].src;
+  imageTwo.title = allProducts[secondProductIndex].name;
+  allProducts[secondProductIndex].views++;
 
-  imageThree.src = allProducts[thirdBusIndex].src;
-  imageTwo.title = allProducts[thirdBusIndex].name;
-  allProducts[thirdBusIndex].views++;
+  imageThree.src = allProducts[thirdProductIndex].src;
+  imageTwo.title = allProducts[thirdProductIndex].name;
+  allProducts[thirdProductIndex].views++;
 }
 
 function handleClick(event) {
