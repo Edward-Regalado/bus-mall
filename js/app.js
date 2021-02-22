@@ -7,7 +7,6 @@ let clicksAllowed = 25;
 let allProducts = [];
 let indexArray = [];
 let myContainer = document.getElementById('img-box');
-let myButton = document.getElementById('results-button');
 
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
@@ -44,7 +43,7 @@ new Product('water-can');
 new Product('wine-glass');
 new Product('sweep', 'png');
 
-// Random number generator
+
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
@@ -77,21 +76,9 @@ function renderProducts() {
   allProducts[thirdBusIndex].views++;
 }
 
-
-function renderResults() {
-  let myList = document.querySelector('ul');
-  for (let i = 0; i < allProducts.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times`;
-    myList.appendChild(li);
-  }
-}
-
 function handleClick(event) {
   if (event.target === myContainer) {
-
     alert('Please click an image and FOLLOW INSTRUCTIONS');
-    // renderResults();
   }
 
   totalClicks++;
@@ -105,19 +92,56 @@ function handleClick(event) {
 
   renderProducts();
   if (totalClicks === clicksAllowed) {
-    // Remove Event Listener
     myContainer.removeEventListener('click', handleClick);
-  }
-}
-
-function handleButtonClick(event) { //eslint-disable-line
-  if (totalClicks === clicksAllowed) {
-    renderResults();
-    totalClicks = 0;
+    renderChart();
   }
 }
 
 renderProducts();
-myButton.addEventListener('click', handleButtonClick);
+
+function renderChart() {
+  let productNames = [];
+  let productViews = [];
+  let productClicks = [];
+  for (let i = 0; i < allProducts.length; i++) {
+    productNames.push(allProducts[i].name);
+    productViews.push(allProducts[i].views);
+    productClicks.push(allProducts[i].clicks);
+  }
+
+  var chartObject = {
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: 'Views',
+        data: productViews,
+        backgroundColor: 'rgba(255, 255, 255, 3)',
+        borderColor: 'rgba(255, 255, 255, 10)',
+        borderWidth: 1
+      },
+      {
+        label: 'Clicks',
+        data: productViews,
+        backgroundColor: 'rgba(34, 166, 179, 3)',
+        borderColor: 'rgba(34, 166, 179, 10)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  };
+
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, chartObject);
+}
+
 myContainer.addEventListener('click', handleClick);
 
