@@ -10,7 +10,7 @@ let uniqueImageCount = 6;
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
-let myContainer = document.getElementById('img-box');
+let myContainer = document.querySelector('section');
 
 // Constructor Function //
 
@@ -69,13 +69,13 @@ function renderProducts() {
   allProducts[secondProductIndex].views++;
 
   imageThree.src = allProducts[thirdProductIndex].src;
-  imageTwo.title = allProducts[thirdProductIndex].name;
+  imageThree.title = allProducts[thirdProductIndex].name;
   allProducts[thirdProductIndex].views++;
 }
 
 function handleClick(event) {
   if (event.target === myContainer) {
-    alert('Please click an image and FOLLOW INSTRUCTIONS');
+    alert('Please click on your favorite Product!');
   }
 
   totalClicks++;
@@ -119,7 +119,7 @@ function renderChart() {
       },
       {
         label: 'Clicks',
-        data: productViews,
+        data: productClicks,
         backgroundColor: 'rgba(34, 166, 179, 3)',
         borderColor: 'rgba(34, 166, 179, 10)',
         borderWidth: 1

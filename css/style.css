@@ -57,6 +57,9 @@ header {
 main {
   display: flex;
   justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
   grid-column: 1 / 7;
   grid-row: 2 / 4;
   /* border: 3px solid white; */
@@ -68,8 +71,10 @@ section {
   display: flex;
   justify-content: center;
   align-content: space-between;
-  width: auto;
+  width: 100%;
+  padding: 30px;
   /* border: 3px solid green; */
+
 }
 
 footer {
@@ -88,16 +93,16 @@ h2 {
 
 
 
-#img-box { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 100px;
+/* #img-box {  */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* padding: 100px; */
   /* border: 3px solid green; */
-  width: 100%;
-
-}
+  /* width: 100%; */
+/*  */
+/* } */
 
 #chartBox {
   display: flex;
@@ -112,29 +117,23 @@ h2 {
   margin: auto;
 }
 
-#myChart {
-  /* width: 400px; */
-  /* background-color: rgb(255, 255, 255); */
-  
-}
-
 
 img {
   border-radius: 50px;
   height: 300px;
   width: 300px;
   /* border: 3px solid green; */
-  margin: 10px;
+  margin: 50px;
 }
 
 p {
   width: 80%
 }
 
-img:hover {
-  cursor: pointer;
-}
-
+/* img:hover { */
+  /* cursor: pointer; */
+/* } */
+/*  */
 /* #results-button { */
   /* display: flex; */
   /* align-items: center; */
@@ -181,11 +180,11 @@ img:hover {
   /* grid-row: 6 / 7; */
 /* } */
 
-div:hover {
-  cursor: pointer;
-}
+/* div:hover { */
+  /* cursor: pointer; */
+/* } */
 
-img:hover {
-  opacity: 0.5;  
-}
-
+/* img:hover { */
+  /* opacity: 0.5;   */
+/* } */
+/*  */
