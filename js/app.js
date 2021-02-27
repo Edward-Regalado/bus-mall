@@ -21,12 +21,12 @@ function Product(name, fileExtension = 'jpg') {
   this.clicks = 0;
   allProducts.push(this);
 }
-// 1. get the data from local storage using its key
+
 let retrievedProducts = localStorage.getItem('products');
 
-// 3. use local storage in a way that doesn't BREAK your existing code.
+
 if (retrievedProducts) {
-  // 2. make that data useable again by parsing it
+
   let parsedProducts = JSON.parse(retrievedProducts);
   allProducts = parsedProducts;
 } else {
