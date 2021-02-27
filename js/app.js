@@ -99,8 +99,8 @@ function handleClick(event) {
   if (totalClicks === clicksAllowed) {
     myContainer.removeEventListener('click', handleClick);
     renderChart();
-    let stringifiedProducts = JSON.stringify(allProducts);
-    localStorage.setItem('products', stringifiedProducts);
+    //let stringifiedProducts = JSON.stringify(allProducts);
+    //localStorage.setItem('products', stringifiedProducts);
   }
 }
 
