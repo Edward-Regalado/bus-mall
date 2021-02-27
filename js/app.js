@@ -21,27 +21,36 @@ function Product(name, fileExtension = 'jpg') {
   this.clicks = 0;
   allProducts.push(this);
 }
+// 1. get the data from local storage using its key
+let retrievedProducts = localStorage.getItem('products');
 
-new Product('usb', 'gif');
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
-new Product('sweep', 'png');
+// 3. use local storage in a way that doesn't BREAK your existing code.
+if (retrievedProducts) {
+  // 2. make that data useable again by parsing it
+  let parsedProducts = JSON.parse(retrievedProducts);
+  allProducts = parsedProducts;
+} else {
+  new Product('usb', 'gif');
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
+  new Product('sweep', 'png');
+}
 
 
 function getRandomIndex() {
@@ -49,7 +58,7 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
-  while(indexArray.length < uniqueImageCount){
+  while (indexArray.length < uniqueImageCount) {
     let randomIndex = getRandomIndex();
     while (!indexArray.includes(randomIndex)) {
       indexArray.unshift(randomIndex);
@@ -91,6 +100,8 @@ function handleClick(event) {
   if (totalClicks === clicksAllowed) {
     myContainer.removeEventListener('click', handleClick);
     renderChart();
+    let stringifiedProducts = JSON.stringify(allProducts);
+    localStorage.setItem('products', stringifiedProducts);
   }
 }
 
@@ -137,7 +148,7 @@ function renderChart() {
   };
 
   let ctx = document.getElementById('myChart').getContext('2d');
-  let myChart = new Chart(ctx, chartObject);
+  let myChart = new Chart(ctx, chartObject); //eslint-disable-line
 }
 
 myContainer.addEventListener('click', handleClick);
