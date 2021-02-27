@@ -52,7 +52,6 @@ if (retrievedProducts) {
   new Product('sweep', 'png');
 }
 
-
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
@@ -100,8 +99,6 @@ function handleClick(event) {
   if (totalClicks === clicksAllowed) {
     myContainer.removeEventListener('click', handleClick);
     renderChart();
-    let stringifiedProducts = JSON.stringify(allProducts);
-    localStorage.setItem('products', stringifiedProducts);
   }
 }
 
